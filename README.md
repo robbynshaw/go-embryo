@@ -129,26 +129,26 @@ type IPFSObject struct {
 }
 ```
 
-An *embryo* object is a thin wrapper around this type of object,
-adding metadata about the update reference **channels** for this
-object.
+An *embryo* object is a superset of the basic IPFS object,
+adding metadata about the update reference **channels**
+and the author.
 
 ```go
 // Embryo object in IPFS
 type Embryo struct {
-    // One of the two may be nil
-    content     IPFSObject
-    contentRef  []byte // Multi-hash
+    // Basic IPFS object
+    links  []IPFSLink
+    data   []byte 
     
     // Required embryo metadata
     authorKey   []byte // Multi-hash of the publisher's public key
-    digest      []byte // Author signature of the embryo
+    signature   []byte // Author signature of the embryo
     channels    []UpdateChannel // See below
     
     // Optional embryo metadata
     parent      []byte // Multi-hash of the previous published version
     authorInfo  []byte // Multi-hash to information about the publisher
-    timestamp   int // Unix timestamp
+    timestamp   int64 // Unix timestamp
     // Key-Value pairs required for the specified update channel
     // format(s) given. (Could include block-chain type nonce, etc.)
     tags        map[string]string
@@ -160,6 +160,11 @@ type UpdateChannel struct {
     address     string // Multi-address of the update channel
 }
 ```
+
+> NOTE: In the IPFS white paper, a signed object is shown as a wrapper
+> object around the raw bytes of the internal message. Here, we are opting
+> to keep both properties embedded in the object itself, which means that
+> the object must be slightly normalized before the signature if validated.
 
 As noted in the comments, the content itself may either be embedded
 directly in the embryo object under the 'content' key or linked to
