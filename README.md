@@ -272,7 +272,7 @@ of scope for this README).
 
 The open ended nature of the update channel format allows for a
 wide variety of additional features to be implemented, if one is
-so inclined. Below is a partial list -- food for though:
+so inclined. Below is a partial list -- food for thought:
 
 * Adding publishers to a stream
 * Removing publishers from a stream
