@@ -43,7 +43,7 @@ piece of content, but also a way to point users to the newest update
 to that content and to keep them informed of any updates thereafter.
 
 
-## [[Existing]] Solutions
+## Existing Solutions
 
 Many projects have their own implementation of a proposed solution
 to this issue of immutability. Two promising solutions are found in
