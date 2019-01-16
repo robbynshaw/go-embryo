@@ -167,8 +167,8 @@ type UpdateChannel struct {
 > the object must be slightly normalized before the signature if validated.
 
 As noted in the comments, the content itself may either be embedded
-directly in the embryo object under the 'content' key or linked to
-from the 'contentRef' key. For smaller objects, such as a JSON
+directly in the embryo object under the 'data' key or linked to
+from the 'links' array. For smaller objects, such as a JSON
 document or an IPFS tree object, it makes sense to embed the content.
 
 ### Links
